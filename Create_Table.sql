@@ -1,0 +1,142 @@
+--CREATE TABLE STAGING
+
+drop table superstore;
+
+CREATE TABLE Superstore (
+    "Row_ID"          INT,
+    "Order_ID"        VARCHAR(14),
+    "Order_Date"      DATE,
+    "Ship_Date"       DATE,
+    "Ship_Mode"       VARCHAR(15),
+    "Customer_ID"     VARCHAR(8),
+    "Customer_Name"   VARCHAR(30),
+    "Segment"         VARCHAR(15),
+    "Country"         VARCHAR(20),
+    "City"            VARCHAR(30),
+    "State"           VARCHAR(30),
+    "Postal_Code"     INTEGER,
+    "Region"          VARCHAR(10),
+    "Product_ID"      VARCHAR(15),
+    "Category"        VARCHAR(20),
+    "Sub_Category"    VARCHAR(20),
+    "Product_Name"    VARCHAR(130),
+    "Sales"           DECIMAL(10,2),
+    "Quantity"        INTEGER,
+    "Discount"        DECIMAL(6,2),
+    "Profit"          DECIMAL(10,2)
+);
+
+drop table "people";
+Create table PEOPLE(
+"Person"	VARCHAR(30),
+"Region"  VARCHAR(10));
+
+Create table RETURNS(
+"Order_ID"	VARCHAR(14),
+"Returned"  VARCHAR(3)
+); 
+
+
+
+---CREATE TABLE DATA WAREHOUSE
+
+CREATE TABLE err_log (
+    PROC_NAME VARCHAR(20),
+    LOG_NO SERIAL PRIMARY KEY,
+    LOG_DATE TIMESTAMP,
+    ERR_MSG VARCHAR(4000)
+);
+
+
+CREATE UNIQUE INDEX XPKERR_LOG ON ERR_LOG
+(LOG_NO);
+
+  
+ 
+ --BUAT TABEL PRODUCT
+
+CREATE TABLE product (
+    PRODUCT_ID CHAR(15),
+    CATEGORY VARCHAR(20),
+    SUB_CATEGORY VARCHAR(20),
+    PRODUCT_NAME VARCHAR(130)
+)
+
+ALTER TABLE product
+ADD PRIMARY KEY (PRODUCT_ID);
+
+CREATE TABLE location(
+    ZIPCODE INT NOT NULL,
+    COUNTRY VARCHAR(20),
+    REGION VARCHAR(10) NOT NULL,
+    STATE VARCHAR(30),
+    CITY VARCHAR(30)
+);
+drop table location;
+CREATE UNIQUE INDEX idx_location_zipcode ON location (ZIPCODE);
+
+ALTER TABLE location ADD CONSTRAINT XPKLOCATION PRIMARY KEY (ZIPCODE);
+
+ALTER TABLE location
+ADD CONSTRAINT REGION_FK
+FOREIGN KEY (REGION)
+REFERENCES region_mgr(REGION)
+ON DELETE SET NULL;
+
+
+
+--BUAT TABEL CUSTOMER
+
+CREATE TABLE customer (
+    CUSTOMER_ID CHAR(8),
+    CUSTOMER_NAME VARCHAR(30),
+    SEGMENT VARCHAR(20)
+)
+
+ALTER TABLE customer
+ADD PRIMARY KEY (CUSTOMER_ID);
+
+
+
+-- BUAT TABEL REGION MGR
+
+CREATE TABLE region_mgr (
+    Person VARCHAR(30),
+    Region VARCHAR(10)
+);
+
+CREATE UNIQUE INDEX XPKREGION_MGR ON REGION_MGR (REGION);
+
+ALTER TABLE region_mgr
+ADD CONSTRAINT XPKREGION_MGR PRIMARY KEY (Region);
+
+
+
+
+--BUAT TABEL ORDERS
+
+CREATE TABLE orders (
+    ORDER_Date DATE,
+    ORDER_ID CHAR(14),
+    PRODUCT_ID CHAR(15),
+    CUSTOMER_ID CHAR(8),
+    SHIP_DATE DATE,
+    ZIPCODE INT,
+    SALES DECIMAL(10,2),
+    QUANTITY INT,
+    DISCOUNT DECIMAL(5,2),
+    PROFIT DECIMAL(10,2),
+    RETURNED CHAR(3)
+);
+
+ALTER TABLE orders
+ADD CONSTRAINT fk_product FOREIGN KEY (PRODUCT_ID) REFERENCES product(PRODUCT_ID);
+
+ALTER TABLE orders
+ADD CONSTRAINT fk_customer FOREIGN KEY (CUSTOMER_ID) REFERENCES customer(CUSTOMER_ID);
+
+ALTER TABLE orders
+ADD CONSTRAINT fk_zip FOREIGN KEY (ZIPCODE) REFERENCES location(ZIPCODE);
+
+ALTER TABLE orders
+ADD CONSTRAINT pk_order_id PRIMARY KEY (order_id);
