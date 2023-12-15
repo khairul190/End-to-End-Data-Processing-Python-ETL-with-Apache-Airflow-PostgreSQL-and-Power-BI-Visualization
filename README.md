@@ -21,3 +21,10 @@ I developed an ETL process using Python (Apache Airflow) with PostgreSQL, follow
 
 # Data Mapping Detail ( Staging to dwh )
 ![image](https://github.com/khairul190/End-to-End-Data-Processing-Python-ETL-with-Apache-Airflow-PostgreSQL-and-Power-BI-Visualization/assets/57305430/18b8333b-e610-4798-b950-dd497afee0fe)
+## Mapping using sql
+![image](https://github.com/khairul190/End-to-End-Data-Processing-Python-ETL-with-Apache-Airflow-PostgreSQL-and-Power-BI-Visualization/assets/57305430/872ccc7c-11e0-45b2-a1a9-af82d1f35077)
+
+
+
+# Power BI Data Visualization
+![image](https://github.com/khairul190/End-to-End-Data-Processing-Python-ETL-with-Apache-Airflow-PostgreSQL-and-Power-BI-Visualization/assets/57305430/402398c7-b326-4295-bd27-6025dc418577)
