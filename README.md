@@ -22,7 +22,7 @@ mapping pada 5 table dwh yaitu pada table orders, customer, product, region_mgr,
 ## Mapping error log Table using sql
 ![image](https://github.com/khairul190/End-to-End-Data-Processing-Python-ETL-with-Apache-Airflow-PostgreSQL-and-Power-BI-Visualization/assets/57305430/77b5a49b-412b-4729-a37c-112a350ca7a9)
 
-# Overwire table result
+# Overview table result
 ### staging.superstore
 ![image](https://github.com/khairul190/End-to-End-Data-Processing-Python-ETL-with-Apache-Airflow-PostgreSQL-and-Power-BI-Visualization/assets/57305430/2abf7aa0-f4a6-416e-9fb7-eb844a86c643)
 
